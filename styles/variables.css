@@ -1,0 +1,32 @@
+/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+
+:root {
+
+/*fonts*/
+  --main-font: 'Inter';
+  --accent-font: 'PressStart2P';
+
+  --font-weight-main: 400;
+  --font-weight-title: 700;
+
+  --logo-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  --title-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+/*colors*/
+  --background-color: #ffffff;
+  --background-accent-color: #000000;
+--background-accent-color-transparent: rgb(0 0 0 / 60%);
+
+  --text-stroke-color: #000;
+  --button-text-color: #00cc14;
+  --heart-full: #FF0000;
+  --heart-empty: none;
+  --heart-sparks: #f0000;
+
+  --auto-mode-color: var(--background-color);
+/*gradients*/
+
+  --repeating-linear-gradient-1: #d3d3d3;
+  --repeating-linear-gradient-from: #e7e7e7;
+  --repeating-linear-gradient-to: #1a1a1a;
+
+}

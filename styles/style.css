@@ -1,0 +1,396 @@
+/* Здесь вы напишете основную часть стилей страницы.
+
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ theme-dark — класс тёмной темы
+✦ theme-light — класс светлой темы
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+
+Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
+
+*/
+
+.page {
+    min-inline-size: 320px;
+    min-block-size: 100dvb;
+    margin: 0 auto;
+    font-variation-settings: "wght" var(--font-weight-main, 400);
+    font-family: var(--main-font, "Inter", sans-serif);
+    color: var(--background-accent-color, #000000);
+    background-image: repeating-linear-gradient(to right, var(--repeating-linear-gradient-1, #d3d3d3) 0 2px, transparent 2px 4px), repeating-linear-gradient(to top, var(--repeating-linear-gradient-1, #d3d3d3) 0 2px, transparent 2px 4px),
+        linear-gradient(to bottom, var(--repeating-linear-gradient-from, #e7e7e7) 0.01%, var(--repeating-linear-gradient-to, #1a1a1a));
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--background-color, #ffffff);
+}
+
+/*header starts here*/
+.header {
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    font-family: var(--accent-font, "PressStart2P", fantasy);
+    line-height: normal;
+    text-transform: uppercase;
+    border: 2px solid currentColor;
+    background-color: var(--background-color);
+    max-inline-size: 696px;
+    margin: 100px auto 100px;
+}
+
+.header_logo {
+    font-size: var(--logo-size, clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem));
+    margin-block-end: 20px;
+    margin-top: 136px;
+    line-height: 65px;
+}
+
+.header_title {
+    font-size: var(--title-size, clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem));
+    line-height: 23px;
+}
+
+.header__theme-menu {
+    margin-block: 25px;
+}
+
+.theme-menu__list {
+    display: grid;
+    gap: 14px;
+    padding-inline-start: 18px;
+}
+
+.theme-menu__button {
+    position: relative;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    transition: opacity 0.3s ease;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: 14px;
+}
+
+.theme-menu__button::after {
+    content: "";
+    display: block;
+    margin-block-start: 0;
+    background-color: currentColor;
+    transition: transform 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    block-size: 2px;
+}
+
+.theme-menu__button:hover {
+    opacity: 0.6;
+}
+
+.theme-menu__button:focus {
+    outline: none;
+    opacity: 0.6;
+}
+
+.theme-menu__button:focus-visible {
+    opacity: 0.6;
+}
+
+.theme-menu__button:focus-visible::after {
+    transform: scaleX(1);
+}
+
+.theme-menu__button:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.theme-menu__button:disabled::before {
+    content: "▶";
+    position: absolute;
+    animation: arrowMovement 0.5s ease-in-out infinite alternate;
+    inset-inline-start: -20px;
+}
+
+/*header ends here*/
+
+/*main starts here*/
+
+.main {
+    display: grid;
+    justify-items: center;
+    gap: 50px;
+    font-size: 18px;
+}
+
+.card {
+    border: 2px solid currentColor;
+    background-color: var(--background-color, #ffffff);
+    max-inline-size: 696px;
+}
+
+.card_title {
+    border-block-end: 2px solid currentColor;
+    padding: 4px 10px 6px 10px;
+    font-variation-settings: "wght" var(--font-weight-title);
+    font-size: inherit;
+    line-height: normal;
+}
+
+.card_pic {
+    position: relative;
+    overflow: hidden;
+    border-block-end: 2px solid currentColor;
+}
+
+.picture {
+    display: block;
+    inline-size: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card_pic-watermark {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: normal;
+    font-family: var(--accent-font, "PressStart2P", fantasy);
+    text-shadow: 0 0 1px var(--background-color, #ffffff);
+    mix-blend-mode: hard-light;
+    inset-block-start: clamp(1.4375rem, 1.3935rem + 0.1878vw, 1.5625rem);
+    inset-inline-end: clamp(0.6875rem, 0.3794rem + 1.3146vw, 1.5625rem);
+}
+
+@supports (-webkit-text-stroke: 1px var(--text-stroke-color)) or (text-stroke: 1px var(--text-stroke-color)) {
+    .card_pic-watermark {
+        text-shadow: none;
+        -webkit-text-stroke: 1px var(--text-stroke-color);
+        text-stroke: 1px var(--text-stroke-color);
+    }
+}
+
+.card_content {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    gap: 27px;
+}
+
+.card_text {
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    position: relative;
+    border: 2px solid var(--background-accent-color);
+    font-family: var(--accent-font), fantasy;
+    background: none;
+    cursor: pointer;
+    background-color: transparent;
+    transition: box-shadow 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button__text {
+    position: relative;
+    z-index: 1;
+    color: var(--auto-mode-color);
+    mix-blend-mode: difference;
+    font-family: var(--accent-font, "PressStart2P", fantasy);
+    font-weight: inherit;
+    font-size: 14px;
+    line-height: 1.12;
+}
+
+.card__like-button {
+    inline-size: 130px;
+    height: 38px;
+}
+
+.card__icon-button {
+    display: grid;
+    justify-self: end;
+    align-self: center;
+    border: 2px solid transparent;
+    background-color: transparent;
+    transition: border-color 0.3s ease;
+    max-block-size: 38px;
+}
+
+.card__icon-button:focus {
+    outline: none;
+}
+
+.card__icon-button:focus-visible {
+    border-color: var(--background-accent-color);
+}
+
+.like-icon {
+    inline-size: 39px;
+    block-size: 36px;
+}
+
+.button:focus {
+    outline: none;
+}
+/*не удаляю focus-visible, без него не работает заливка=( */
+
+.button:focus-visible {
+    box-shadow: 2px 2px var(--background-accent-color);
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    inline-size: 100%;
+    block-size: 100%;
+    transition: transform 0.5s ease-in-out;
+    background: var(--background-accent-color);
+}
+
+.button:hover::before {
+    transform: scaleX(1);
+}
+
+/*main ends here*/
+
+/*filters start here*/
+.filter_greyscale {
+    filter: grayscale(70%);
+}
+
+.filter_saturate {
+    filter: saturate(250%);
+}
+
+.filter_multiple {
+    filter: sepia(0.4) hue-rotate(-45deg) saturate(170%);
+}
+
+.filter_invert {
+    filter: invert(100%) sepia(0.4);
+}
+
+.filter_sepia {
+    filter: sepia(90%);
+}
+
+.filter_blur {
+    filter: blur(10px);
+}
+
+.filter_hue-rotate {
+    filter: hue-rotate(130deg) blur(5px);
+}
+
+/*filters end here*/
+
+/*footer starts here*/
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 52px 34.5px 100px 34.5px;
+    min-inline-size: 335px;
+    min-block-size: 55px;
+}
+
+.footer-button {
+    gap: 8px;
+    padding: 18.5px 20px;
+    background-color: var(--background-color, #ffffff);
+}
+
+.footer-button .floppy-pic {
+    width: 28px;
+    fill: var(--auto-mode-color);
+    mix-blend-mode: difference;
+}
+
+/*footer ends here*/
+
+/*info block*/
+
+.dialog[open] {
+    border: 2px solid var(--auto-mode-color);
+    padding: 30px 42px;
+    color: var(--button-text-color, #00cc14);
+    font-family: var(--accent-font), fantasy;
+    background: var(--background-color, #ffffff);
+    min-inline-size: 341px;
+    max-inline-size: 385px;
+}
+
+.dialog__info {
+    display: flex;
+    margin-block-end: 30px;
+    gap: 20px;
+}
+
+.floppy-pic {
+    flex-shrink: 0;
+    inline-size: 39px;
+    fill: var(--background-accent-color);
+}
+
+.dialog__text {
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 150%;
+    text-transform: uppercase;
+    color: var(--background-accent-color, #000000);
+}
+
+.dialog-button {
+    inline-size: 100%;
+    padding: 9px 0px;
+}
+
+.dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.75);
+}
+
+@media (width < 376px) {
+    .header_logo {
+        font-size: clamp(2.5rem, -0.7727rem + 16.3636vw, 3.0625rem);
+        line-height: 49px;
+        margin-top: 120px;
+    }
+
+    .header_title {
+        line-height: 14px;
+    }
+
+    .dialog[open] {
+        padding: 31px clamp(20px, -96.364px + 36.364vw, 40px);
+        max-inline-size: clamp(300px, 61.455px + 74.545vw, 341px);
+    }
+
+    .footer-button {
+        flex-direction: column;
+        padding: 15px 18px;
+        max-inline-size: 306px;
+        max-block-size: 80px;
+    }
+}
