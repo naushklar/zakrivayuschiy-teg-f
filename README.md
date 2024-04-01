@@ -1,1 +1,1 @@
-# zakrivayuschiy-teg-f
+https://github.com/naushklar/zakrivayuschiy-teg-f.git
